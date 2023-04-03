@@ -10,7 +10,7 @@ from pyrogram.types import (
 )
 from pyrogram.errors import FloodWait
 from handlers.helpers import str_to_b64
-from utils import shortlink 
+from utils import get_shortlink 
 
 async def forward_to_channel(bot: Client, message: Message, editable: Message):
     try:
