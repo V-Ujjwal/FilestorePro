@@ -33,7 +33,8 @@ Created by @iSmartBoi_Ujjwal
 	- ID of a Channel which you want to do Force Sub to use the bot. 
 - `LOG_CHANNEL` - Logs Channel ID
 	- This for some getting user info. If any new User added to DB, Bot will send Log to that Logs Channel. You can use same DB Channel ID.
-
+- `SHORT_URL` - Shortner site without https like shorturllink.in
+- `SHORT_API` - Shortner api key
 ### Deploy Now:
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/V-Ujjwal/FilestorePro)
 
