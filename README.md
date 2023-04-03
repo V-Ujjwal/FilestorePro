@@ -35,7 +35,7 @@ Created by @iSmartBoi_Ujjwal
 	- This for some getting user info. If any new User added to DB, Bot will send Log to that Logs Channel. You can use same DB Channel ID.
 
 ### Deploy Now:
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/new?template=https://github.com/V-Ujjwal/FilestorePro)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https://github.com/V-Ujjwal/FilestorePro)
 
 ## Commands:
 ```
