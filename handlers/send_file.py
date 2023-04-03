@@ -6,7 +6,6 @@ from pyrogram import Client
 from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 from handlers.helpers import str_to_b64
-#from Utils import shortenedUrl
 
 async def reply_forward(message: Message, file_id: int):
     try:
