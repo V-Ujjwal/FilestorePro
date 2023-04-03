@@ -14,7 +14,7 @@ URL_SHORTENR_WEBSITE = environ.get('SHORT_URL', '')
 URL_SHORTNER_WEBSITE_API = environ.get('SHORTAPI', '')
 
                 
-async def shortlink(link):   
+async def get_shortlink(link):   
         https = link.split(":")[0]
     if "http" == https:
         https = "https"
