@@ -10,8 +10,9 @@ from pyrogram import *
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-URL_SHORTENR_WEBSITE = environ.get('SHORT_URL', '')
-URL_SHORTNER_WEBSITE_API = environ.get('SHORTAPI', '')
+# url shortner
+SHORT_URL = environ.get("SHORT_URL")
+SHORT_API = environ.get("SHORT_API")
 
                 
 async def get_shortlink(link):   
@@ -19,8 +20,9 @@ async def get_shortlink(link):
     if "http" == https:
         https = "https"
         link = link.replace("http", https)
-    url = f'https://{SHORT_URL}/api'
-     SHORT_API,
+    url = f'{SHORT_URL}/api'
+    params = {
+      'api': SHORT_API,
       'url': link,
     }
     try:
