@@ -15,15 +15,14 @@ SHORT_URL = environ.get("SHORT_URL")
 SHORT_API = environ.get("SHORT_API")
 
                 
-async def get_shortlink(link):   
-        https = link.split(":")[0]
+async def get_shortlink(link):
+    https = link.split(":")[0]
     if "http" == https:
         https = "https"
         link = link.replace("http", https)
-    url = f'{SHORT_URL}/api'
-    params = {
-      'api': SHORT_API,
-      'url': link,
+    url = f'https://{SHORT_URL}/api'
+    params = {'api': SHORT_API,
+              'url': link,
     }
     try:
         async with aiohttp.ClientSession() as session:
@@ -33,7 +32,8 @@ async def get_shortlink(link):
                     return data['shortenedUrl']
                 else:
                     logger.error(f"Error: {data['message']}")
-                    return link
+                    return f'https://{SHORT_URL}/api?api={SHORT_API}&link={link}'
+
     except Exception as e:
         logger.error(e)
-        return link
+        return f'{SHORT_URL}/api?api={SHORT_API}&link={link}'
