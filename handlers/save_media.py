@@ -10,7 +10,7 @@ from pyrogram.types import (
 )
 from pyrogram.errors import FloodWait
 from handlers.helpers import str_to_b64
-from utils import get_shortlink
+from utils import get_shortlink 
 
 async def forward_to_channel(bot: Client, message: Message, editable: Message):
     try:
@@ -87,7 +87,7 @@ async def save_media_in_channel(bot: Client, editable: Message, message: Message
         await forwarded_msg.reply_text(
             f"#PRIVATE_FILE:\n\n[{message.from_user.first_name}](tg://user?id={message.from_user.id}) Got File Link!",
             disable_web_page_preview=True)
-        share_link = await shortlink(f"https://t.me/{Config.BOT_USERNAME}?start=MxABots_{str_to_b64(file_er_id)}")
+        share_link = await get_shortlink(f"https://t.me/{Config.BOT_USERNAME}?start=MxABots_{str_to_b64(file_er_id)}")
         await editable.edit(
             "**Your File Stored in my Database!**\n\n"
             f"Here is the Permanent Link of your file: {share_link} \n\n"
