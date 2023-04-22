@@ -112,10 +112,13 @@ async def start(bot: Client, cmd: Message):
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
 
       def bot():
-      def send_file(chat_id, file_id  
+
+    def send_file(chat_id, file_id):
+        
+    
     for file_id in file_ids:
         send_file(chat_id, file_id)
-
+               
       def send_files(bot, chat_id, file_ids):
     for file_id in file_ids:
         bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.UPLOAD_DOCUMENT)
