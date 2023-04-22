@@ -42,4 +42,4 @@ async def send_media_and_reply(bot: Client, user_id: int, file_id: int):
     await reply_forward(message=sent_message, file_id=file_id)
     asyncio.create_task(delete_file(file_id)) # schedule the file deletion task
     n.delete()
-    asyncio.sleep(60)
+    await asyncio.sleep(60)
