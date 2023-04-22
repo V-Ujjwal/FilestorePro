@@ -109,27 +109,7 @@ async def start(bot: Client, cmd: Message):
             for i in range(len(message_ids)):
                 await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
         except Exception as err:
-            await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
-
-      def bot():
-
-    def send_file(chat_id, file_id):
-        
-    
-    for file_id in file_ids:
-        send_file(chat_id, file_id)
-               
-      def send_files(bot, chat_id, file_ids):
-    for file_id in file_ids:
-        bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.UPLOAD_DOCUMENT)
-        bot.send_document(chat_id=chat_id, document=file_id)
-        # Wait for 30 seconds before sending the next file
-        time.sleep(30)
-
-    # Delete all files after the last file has been sent
-    for file_id in file_ids:
-        bot.delete_message(chat_id=chat_id, message_id=file_id)
-
+            await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")   
 
 @Bot.on_message((filters.document | filters.video | filters.audio) & ~filters.chat(Config.DB_CHANNEL))
 async def main(bot: Client, message: Message):
