@@ -26,7 +26,7 @@ from pyrogram.types import (
 from configs import Config
 from handlers.database import db
 from handlers.add_user_to_db import add_user_to_database
-from handlers.send_file import send_media_and_replies
+from handlers.send_file import send_media_and_reply
 from handlers.helpers import b64_to_str, str_to_b64
 from handlers.check_user_status import handle_user_status
 from handlers.force_sub_handler import (
