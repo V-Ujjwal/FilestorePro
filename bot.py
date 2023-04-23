@@ -116,15 +116,15 @@ async def start(bot: Client, cmd: Message):
             sent_messages = []
             for i in range(len(message_ids)):
             for file in files:
-            sent_message = await message.reply_document(document=file)
-            sent_messages.append(sent_message)
+                sent_message = await message.reply_document(document=file)
+                sent_messages.append(sent_message)
     
     # Wait for 20 seconds
-        await asyncio.sleep(DELETE_TIME)
+            await asyncio.sleep(DELETE_TIME)
     
     # Delete all files
-    for sent_message in sent_messages:
-        await sent_message.delete()
+            for sent_message in sent_messages:
+                await sent_message.delete()
         except:
             pass
 
