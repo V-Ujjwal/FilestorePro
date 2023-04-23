@@ -121,7 +121,8 @@ def send_files(bot, chat_id, file_ids):
     # Delete all files after the last file has been sent
     for file_id in file_ids:
         bot.delete_message(chat_id=chat_id, message_id=file_id)
-
+        except:
+            pass
 
 
 
