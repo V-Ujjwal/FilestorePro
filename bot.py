@@ -109,7 +109,7 @@ async def start(bot: Client, cmd: Message):
            # for i in range(len(message_ids)):
                 await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
       #  except Exception as err:
-           # await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")   
+           await cmd.reply_text("files will delete after few seconds")   
 
 async def send_files(bot, chat_id, file_ids):
     for file_id in file_ids:
