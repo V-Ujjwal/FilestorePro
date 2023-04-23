@@ -32,7 +32,7 @@ async def media_forward(bot: Client, user_id: int, file_id: int):
 
 
 async def delete_file(file_id: int):
-    await asyncio.sleep(20)  # wait for 20 seconds
+    await asyncio.sleep(10)  # wait for 20 seconds
     # Delete the file using the file ID
     # Code to delete the file goes here
 
@@ -46,9 +46,9 @@ async def send_files(bot, chat_id, file_ids):
     for file_id in file_ids:
         bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.UPLOAD_DOCUMENT)
         bot.send_document(chat_id=chat_id, document=file_id)
-        # Wait for 30 seconds before sending the next file
+        # Wait for 30 seconds before deleting files
         time.sleep(30)
 
     # Delete all files after the last file has been sent
     for file_id in file_ids:
-        bot.delete_message(chat_id=chat_id, message_id=file_id)
+    await bot.delete_message(chat_id=chat_id, message_id=file_id)
