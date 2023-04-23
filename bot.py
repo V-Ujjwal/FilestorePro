@@ -120,7 +120,7 @@ async def start(bot: Client, cmd: Message):
             sent_messages.append(sent_message)
     
     # Wait for 20 seconds
-    await asyncio.sleep(DELETE_TIME)
+        await asyncio.sleep(DELETE_TIME)
     
     # Delete all files
     for sent_message in sent_messages:
