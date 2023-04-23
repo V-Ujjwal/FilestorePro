@@ -104,13 +104,14 @@ async def start(bot: Client, cmd: Message):
                    # quote=True,
                   #  disable_web_page_preview=True
               #  )
-            else:
+         #   else:
                 #message_ids.append(int(GetMessage.id))
            # for i in range(len(message_ids)):
                 #await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
       #  except Exception as err:
           # await cmd.reply_text('files will delete after few seconds')   
 
+            else:
 # Send all files
     files = reply_message.media
     sent_messages = []
