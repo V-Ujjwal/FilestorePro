@@ -112,14 +112,14 @@ async def start(bot: Client, cmd: Message):
       #  except Exception as err:
           # await cmd.reply_text('files will delete after few seconds')   
 
-        else:
+    else:
 # Send all files
-            files = reply_message.media
-            sent_messages = []
-                for file in files:
-                sent_message = await message.reply_document(document=file)
-                sent_messages.append(sent_message)
-                await cmd.reply_text('files will delete after few seconds')
+        files = reply_message.media
+        sent_messages = []
+            for file in files:
+            sent_message = await message.reply_document(document=file)
+            sent_messages.append(sent_message)
+            await cmd.reply_text('files will delete after few seconds')
 
     # Wait for 20 seconds
             await asyncio.sleep(DELETE_TIME)
