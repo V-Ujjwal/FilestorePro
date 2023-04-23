@@ -44,11 +44,11 @@ async def send_media_and_reply(bot: Client, user_id: int, file_id: int):
 
 async def send_files(bot, chat_id, file_ids):
     for file_id in file_ids:
-        bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.UPLOAD_DOCUMENT)
+        bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.SEND_DOCUMENT)
         bot.send_document(chat_id=chat_id, document=file_id)
         # Wait for 30 seconds before deleting files
         time.sleep(30)
 
     # Delete all files after the last file has been sent
     for file_id in file_ids:
-    await bot.delete_message(chat_id=chat_id, message_id=file_id)
+        bot.delete_message(chat_id=chat_id, message_id=file_id)
