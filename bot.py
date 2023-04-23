@@ -110,14 +110,14 @@ async def start(bot: Client, cmd: Message):
            # for i in range(len(message_ids)):
                 #await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
       #  except Exception as err:
-          # await cmd.reply_text('files will delete after few seconds')   
-
-         else:
+          # await cmd.reply_text('files will delete after few seconds')       
+            else:
                 files = reply_message.media
             sent_messages = []
             for i in range(len(message_ids)):
-             for file in files:           sent_message = await message.reply_document(document=file)
-        sent_messages.append(sent_message)
+             for file in files:
+            sent_message = await message.reply_document(document=file)
+            sent_messages.append(sent_message)
     
     # Wait for 20 seconds
     await asyncio.sleep(DELETE_TIME)
@@ -127,10 +127,6 @@ async def start(bot: Client, cmd: Message):
         await sent_message.delete()
         except:
             pass
-
-
-
-
 
 @Bot.on_message((filters.document | filters.video | filters.audio) & ~filters.chat(Config.DB_CHANNEL))
 async def main(bot: Client, message: Message):
