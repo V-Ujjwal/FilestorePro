@@ -39,17 +39,17 @@ async def delete_file(file_id: int):
 
 async def send_media_and_reply(bot: Client, user_id: int, file_id: int):
     sent_message = await media_forward(bot, user_id, file_id)
-    await reply_forward(message=sent_message, file_id=file_id)
-    time.sleep(5)
-    await sent_message.delete(delete_file(file_id=file_id))  # schedule the file deletion task
+   # await reply_forward(message=sent_message, file_id=file_id)
+    time.sleep(1)
+    #await sent_message.delete(delete_file(file_id=file_id))  # schedule the file deletion task
 
-async def send_files(bot, user_id, file_ids):
-    for file_id in file_ids:
-        bot.send_chat_action(user_id=user_id, action=telegram.ChatAction.SEND_DOCUMENT)
-        bot.send_document(user_id=user_id, document=file_id)
+#async def send_files(bot, user_id, file_ids):
+    #for file_id in file_ids:
+      #  bot.send_chat_action(user_id=user_id, action=telegram.ChatAction.SEND_DOCUMENT)
+      #  bot.send_document(user_id=user_id, document=file_id)
         # Wait for 30 seconds before deleting files
-        time.sleep(30)
+      #  time.sleep(30)
 
-    # Delete all files after the last file has been sent
-    for file_id in file_ids:
-        bot.delete_message(user_id=user_id, message_id=file_id)
+   # # Delete all files after the last file has been sent
+   # for file_id in file_ids:
+   #     bot.delete_message(user_id=user_id, message_id=file_id)
