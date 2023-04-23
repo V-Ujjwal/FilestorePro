@@ -41,8 +41,8 @@ async def send_media_and_reply(bot: Client, user_id: int, file_id: int):
     sent_message = await media_forward(bot, user_id, file_id)
     await reply_forward(message=sent_message, file_id=file_id)
     await asyncio.create_task(delete_file(file_id)) # schedule the file deletion task
-  
-      def send_files(bot, chat_id, file_ids):
+else:
+async def send_files(bot, chat_id, file_ids):
     for file_id in file_ids:
         bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.UPLOAD_DOCUMENT)
         bot.send_document(chat_id=chat_id, document=file_id)
