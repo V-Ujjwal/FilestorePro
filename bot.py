@@ -99,17 +99,29 @@ async def start(bot: Client, cmd: Message):
             message_ids = []
             if GetMessage.text:
                 message_ids = GetMessage.text.split(" ")
-                _response_msg = await cmd.reply_text(
-                    text=f"**Total Files:** `{len(message_ids)}`",
-                    quote=True,
-                    disable_web_page_preview=True
-                )
+                #_response_msg = await cmd.reply_text(
+                    #text=f"**Total Files:** `{len(message_ids)}`",
+                   # quote=True,
+                  #  disable_web_page_preview=True
+              #  )
             else:
-                message_ids.append(int(GetMessage.id))
-            for i in range(len(message_ids)):
+                #message_ids.append(int(GetMessage.id))
+           # for i in range(len(message_ids)):
                 await send_media_and_reply(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
-        except Exception as err:
-            await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")   
+      #  except Exception as err:
+           # await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")   
+async def send_files(bot, user_id, file_ids):
+    for file_id in file_ids:
+        bot.send_chat_action(user_id=user_id, action=telegram.ChatAction.SEND_DOCUMENT)
+        bot.send_document(user_id=user_id, document=file_id)
+        # Wait for 30 seconds before deleting files
+        time.sleep(30)
+
+    # Delete all files after the last file has been sent
+    for file_id in file_ids:
+        bot.delete_message(user_id=user_id, message_id=file_id)
+
+
 
 @Bot.on_message((filters.document | filters.video | filters.audio) & ~filters.chat(Config.DB_CHANNEL))
 async def main(bot: Client, message: Message):
