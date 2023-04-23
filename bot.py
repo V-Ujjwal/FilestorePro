@@ -111,16 +111,20 @@ async def start(bot: Client, cmd: Message):
       #  except Exception as err:
           # await cmd.reply_text('files will delete after few seconds')   
 
-async def send_files(bot, chat_id, file_ids):
-    for file_id in file_ids:
-        bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.UPLOAD_DOCUMENT)
-        bot.send_document(chat_id=chat_id, document=file_id)
-        # Wait for 30 seconds before deleting the file.
-        time.sleep(30)
+# Send all files
+    files = reply_message.media
+    sent_messages = []
+    for file in files:
+        sent_message = await message.reply_document(document=file)
+        sent_messages.append(sent_message)
+        await cmd.reply_text('files will delete after few seconds')
 
-    # Delete all files after the last file has been sent
-    for file_id in file_ids:
-        bot.delete_message(chat_id=chat_id, message_id=file_id)
+    # Wait for 20 seconds
+    await asyncio.sleep(DELETE_TIME)
+    
+    # Delete all files
+    for sent_message in sent_messages:
+        await sent_message.delete()
         except:
             pass
 
