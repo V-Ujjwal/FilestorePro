@@ -41,6 +41,7 @@ async def send_media_and_reply(bot: Client, user_id: int, file_id: int):
     sent_message = await media_forward(bot, user_id, file_id)
    # await reply_forward(message=sent_message, file_id=file_id)
     time.sleep(1)
+    return sent_message
     #await sent_message.delete(delete_file(file_id=file_id))  # schedule the file deletion task
 
 #async def send_files(bot, user_id, file_ids):
