@@ -119,7 +119,7 @@ async def start(bot: Client, cmd: Message):
           # for file in files:
                 sent_message = await message.send_media(bot, user_id=cmd.from_user.id, file_id=int(message_ids[i]))
                 sent_messages.append(sent_message) # for batch files
-                await asyncio.sleep(DELETE_TIME)     # Wait for 20 seconds
+                await asyncio.sleep(DELETE_TIME)   # Wait for 20 seconds   
             for sent_message in sent_messages: 
                 await sent_message.delete() # Delete all files
         except:
