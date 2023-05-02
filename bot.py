@@ -112,6 +112,7 @@ async def start(bot: Client, cmd: Message):
       #  except Exception as err:
           # await cmd.reply_text('files will delete after few seconds')       
             else:
+                message_ids.append(int(GetMessage.id))
                 files = reply_message.media
                 sent_messages = []
             for i in range(len(message_ids)):
