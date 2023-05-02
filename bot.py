@@ -115,7 +115,7 @@ async def start(bot: Client, cmd: Message):
                 files = reply_message.media
                 sent_messages = []
             for i in range(len(message_ids)):
-            for file in files:
+          # for file in files:
                 sent_message = await message.reply_document(bot, user_id=cmd.from_user.id, document=file, file_id=int(message_ids[i]))
                 sent_messages.append(sent_message)
     
