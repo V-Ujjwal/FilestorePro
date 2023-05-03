@@ -1,5 +1,7 @@
 #@MxA_Bots | @iSmartBoi_Ujjwal
 
+import os
+from os import environ
 import asyncio
 from configs import Config
 from pyrogram import Client
@@ -7,12 +9,13 @@ from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 from handlers.helpers import str_to_b64
 
+DELETE_TIME = int(environ.get("DELETE_TIME"))
+AUTODELETE_MESSAGE = os.getenv("from os import environ", '''‼️ File will auto delete in few seconds😱 💡Forward it to saved massages or anywhere before downloading.😁 😇Join @Movies_X_Animes''')
+
 async def reply_forward(message: Message, file_id: int):
     try:
         await message.reply_text(
-            f"**Files will be Deleted After 1 min**\n"
-            f"💡Forward it to saved massages or anywhere before downloading.😁\n"
-            f"😇Join @Movies_X_Animes",
+            f"AUTODELETE_MESSAGE",
             disable_web_page_preview=True, quote=True)
     except FloodWait as e:
         await asyncio.sleep(e.value)
@@ -35,9 +38,11 @@ async def media_forward(bot: Client, user_id: int, file_id: int):
 
 async def send_media_and_reply(bot: Client, user_id: int, file_id: int):
     sent_message = await media_forward(bot, user_id, file_id)
-    await asyncio.sleep(1)
-    return sent_message
-   # n = await reply_forward(message=sent_message, file_id=file_id)
+    await message.reply_text(f'AUTODELETE_MESSAGE')
+    asyncio.sleep(DELETE_TIME)
+    await sent_message.delete()
+   # return sent_message
+   # n = 
    # await asyncio.sleep(30)
    # await sent_message.delete()
    # await asyncio.sleep(0.5)
