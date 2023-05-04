@@ -15,7 +15,7 @@ AUTODELETE_MESSAGE = os.getenv("from os import environ", '''‼️ File will aut
 async def reply_forward(message: Message, file_id: int):
     try:
         await message.reply_text(
-            f"AUTODELETE_MESSAGE",
+            f"(AUTODELETE_MESSAGE)",
             disable_web_page_preview=True, quote=True)
     except FloodWait as e:
         await asyncio.sleep(e.value)
