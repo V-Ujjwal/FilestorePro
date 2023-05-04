@@ -45,6 +45,7 @@ Send Me any Media or File.I can Work In Channel too Add Me to Channel with Edit 
 """
 	HOME_TEXT = 
 	HOME_TEXT = """
-Hello, [{}](tg://user?id={})\n\nThis is a Permanent **FɪʟᴇSᴛᴏʀᴇBᴏᴛ** Made for @UPDATES_CHANNEL_USERNAME 
+Hello, [{}](tg://user?id={})\n\nThis is a Permanent **FɪʟᴇSᴛᴏʀᴇBᴏᴛ** Made for @{UPDATES_CHANNEL_USERNAME}
 """
+
 
