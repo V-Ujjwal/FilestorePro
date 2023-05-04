@@ -10,12 +10,12 @@ from pyrogram.errors import FloodWait
 from handlers.helpers import str_to_b64
 
 DELETE_TIME = int(environ.get("DELETE_TIME"))
-AUTODELETE_MESSAGE = os.getenv("from os import environ", '''‼️ File will auto delete in few seconds😱 💡Forward it to saved massages or anywhere before downloading.😁 😇Join @(UPDATES_CHANNEL_USERNAME)''')
+AUTODELETE_MESSAGE = os.getenv("from os import environ", '''‼️ File will auto delete in few seconds😱 💡Forward it to saved massages or anywhere before downloading.😁 😇Join @{UPDATES_CHANNEL_USERNAME}''')
 
 async def reply_forward(message: Message, file_id: int):
     try:
         await message.reply_text(
-            f"(AUTODELETE_MESSAGE)",
+            f"{AUTODELETE_MESSAGE}",
             disable_web_page_preview=True, quote=True)
     except FloodWait as e:
         await asyncio.sleep(e.value)
@@ -38,6 +38,6 @@ async def media_forward(bot: Client, user_id: int, file_id: int):
 
 async def send_media_and_reply(bot: Client, user_id: int, file_id: int):
     sent_message = await media_forward(bot, user_id, file_id)
-    await message.reply_text(f'AUTODELETE_MESSAGE')
+    await message.reply_text(f'{AUTODELETE_MESSAGE}')
     asyncio.sleep(DELETE_TIME)
     await sent_message.delete()
