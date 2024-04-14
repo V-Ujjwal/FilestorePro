@@ -23,7 +23,6 @@ from pyrogram.types import (
     Message
 )
 from configs import Config
-from bot import Bot
 from handlers.database import db
 from handlers.add_user_to_db import add_user_to_database
 from handlers.send_file import send_media_and_reply
@@ -42,12 +41,12 @@ from handlers.save_media import (
 MediaList = {}
 
 
-@Bot.on_message(filters.private)
+@Client.on_message(filters.private)
 async def _(bot: Client, cmd: Message):
     await handle_user_status(bot, cmd)
 
 
-@Bot.on_message(filters.command("start") & filters.private)
+@Client.on_message(filters.command("start") & filters.private)
 async def start(bot: Client, cmd: Message):
 
     if cmd.from_user.id in Config.BANNED_USERS:
@@ -104,7 +103,7 @@ async def start(bot: Client, cmd: Message):
             await cmd.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
 
 
-@Bot.on_message((filters.document | filters.video | filters.audio) & ~filters.chat(Config.DB_CHANNEL))
+@Client.on_message((filters.document | filters.video | filters.audio) & ~filters.chat(Config.DB_CHANNEL))
 async def main(bot: Client, message: Message):
 
     if message.chat.type == enums.ChatType.PRIVATE:
@@ -172,12 +171,12 @@ async def main(bot: Client, message: Message):
             )
 
 
-@Bot.on_message(filters.private & filters.command("broadcast") & filters.user(Config.BOT_OWNER) & filters.reply)
+@Client.on_message(filters.private & filters.command("broadcast") & filters.user(Config.BOT_OWNER) & filters.reply)
 async def broadcast_handler_open(_, m: Message):
     await main_broadcast_handler(m, db)
 
 
-@Bot.on_message(filters.private & filters.command("status") & filters.user(Config.BOT_OWNER))
+@Client.on_message(filters.private & filters.command("status") & filters.user(Config.BOT_OWNER))
 async def sts(_, m: Message):
     total_users = await db.total_users_count()
     await m.reply_text(
@@ -186,7 +185,7 @@ async def sts(_, m: Message):
     )
 
 
-@Bot.on_message(filters.private & filters.command("ban_user") & filters.user(Config.BOT_OWNER))
+@Client.on_message(filters.private & filters.command("ban_user") & filters.user(Config.BOT_OWNER))
 async def ban(c: Client, m: Message):
     
     if len(m.command) == 1:
@@ -230,7 +229,7 @@ async def ban(c: Client, m: Message):
         )
 
 
-@Bot.on_message(filters.private & filters.command("unban_user") & filters.user(Config.BOT_OWNER))
+@Client.on_message(filters.private & filters.command("unban_user") & filters.user(Config.BOT_OWNER))
 async def unban(c: Client, m: Message):
 
     if len(m.command) == 1:
@@ -269,7 +268,7 @@ async def unban(c: Client, m: Message):
         )
 
 
-@Bot.on_message(filters.private & filters.command("banned_users") & filters.user(Config.BOT_OWNER))
+@Client.on_message(filters.private & filters.command("banned_users") & filters.user(Config.BOT_OWNER))
 async def _banned_users(_, m: Message):
     
     all_banned_users = await db.get_all_banned_users()
@@ -294,13 +293,13 @@ async def _banned_users(_, m: Message):
     await m.reply_text(reply_text, True)
 
 
-@Bot.on_message(filters.private & filters.command("clear_batch"))
+@Client.on_message(filters.private & filters.command("clear_batch"))
 async def clear_user_batch(bot: Client, m: Message):
     MediaList[f"{str(m.from_user.id)}"] = []
     await m.reply_text("Cleared your batch files successfully!")
 
 
-@Bot.on_callback_query()
+@Client.on_callback_query()
 async def button(bot: Client, cmd: CallbackQuery):
 
     cb_data = cmd.data
