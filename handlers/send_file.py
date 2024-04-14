@@ -9,7 +9,7 @@ from pyrogram.types import Message
 from pyrogram.errors import FloodWait
 from handlers.helpers import str_to_b64
 
-DELETE_TIME = int(environ.get("DELETE_TIME"))
+DELETE_TIME = int(environ.get("DELETE_TIME", "3600"))
 AUTODELETE_MESSAGE = os.getenv("from os import environ", '''‼️ File will auto delete in few seconds😱 💡Forward it to saved massages or anywhere before downloading.😁 😇Join @{UPDATES_CHANNEL_USERNAME}''')
 
 async def reply_forward(message: Message, file_id: int):
