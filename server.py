@@ -1,6 +1,8 @@
 from aiohttp import web
 import asyncio, logging, aiohttp, traceback
-from configs import URL
+#from configs import URL
+
+URL = ""
 
 r = web.RouteTableDef()
 
