@@ -475,8 +475,8 @@ async def main():
     ba = "0.0.0.0"
     port = int(os.getenv("PORT", 8080))
     await web.TCPSite(wapp, ba, port).start()
-    await Bot.run()
     asyncio.create_task(ping_server())
+    await Bot.run()
 
 
 if __name__ == '__main__':
