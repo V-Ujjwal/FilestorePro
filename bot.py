@@ -37,6 +37,8 @@ from handlers.save_media import (
     save_media_in_channel,
     save_batch_media_in_channel
 )
+from server import web_server, ping_server
+from aiohttp import web
 
 MediaList = {}
 
@@ -467,5 +469,11 @@ async def button(bot: Client, cmd: CallbackQuery):
         await cmd.answer()
     except QueryIdInvalid: pass
 
-
-Bot.run()
+if __name__ == '__main__':
+    wapp = web.AppRunner(await web_server())
+    await wapp.setup()
+    ba = "0.0.0.0"
+    port = int(os.getenv("PORT", 8080))
+    await web.TCPSite(wapp, ba, port).start()
+    asyncio.create_task(ping_server())
+    Bot.run()
