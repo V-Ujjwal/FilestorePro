@@ -7,8 +7,6 @@ from server import web_server
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger("Filestore")
 
-Bot = Client
-
 class Filestore(Client):
     
     def __init__(self):
