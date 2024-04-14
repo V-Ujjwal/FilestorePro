@@ -469,11 +469,15 @@ async def button(bot: Client, cmd: CallbackQuery):
         await cmd.answer()
     except QueryIdInvalid: pass
 
-if __name__ == '__main__':
+async def main():
     wapp = web.AppRunner(await web_server())
     await wapp.setup()
     ba = "0.0.0.0"
     port = int(os.getenv("PORT", 8080))
     await web.TCPSite(wapp, ba, port).start()
+    await Bot.run()
     asyncio.create_task(ping_server())
-    Bot.run()
+
+
+if __name__ == '__main__':
+    asyncio.run(main())
