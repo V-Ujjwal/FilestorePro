@@ -9,8 +9,7 @@ from binascii import (
 from pyrogram import (
     Client,
     enums,
-    filters,
-    idle
+    filters
 )
 from pyrogram.errors import (
     UserNotParticipant,
@@ -24,6 +23,7 @@ from pyrogram.types import (
     Message
 )
 from configs import Config
+from bot import Bot
 from handlers.database import db
 from handlers.add_user_to_db import add_user_to_database
 from handlers.send_file import send_media_and_reply
@@ -38,18 +38,8 @@ from handlers.save_media import (
     save_media_in_channel,
     save_batch_media_in_channel
 )
-from server import web_server, ping_server
-from aiohttp import web
 
 MediaList = {}
-
-Bot = Client(
-    name=Config.BOT_USERNAME,
-    in_memory=True,
-    bot_token=Config.BOT_TOKEN,
-    api_id=Config.API_ID,
-    api_hash=Config.API_HASH
-)
 
 
 @Bot.on_message(filters.private)
@@ -469,17 +459,3 @@ async def button(bot: Client, cmd: CallbackQuery):
     try:
         await cmd.answer()
     except QueryIdInvalid: pass
-
-async def main():
-    wapp = web.AppRunner(await web_server())
-    await wapp.setup()
-    ba = "0.0.0.0"
-    port = int(os.getenv("PORT", 8080))
-    await web.TCPSite(wapp, ba, port).start()
-    await Bot.start()
-    asyncio.create_task(ping_server())
-    idle()
-
-
-if __name__ == '__main__':
-    asyncio.run(main())
